@@ -5,7 +5,7 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
-let indexRouter = require('./routes/index');
+let trackerRouter = require('./routes/index'); // Home page (Workout Dashboard)
 let usersRouter = require('./routes/users');
 
 let app = express();
@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
-app.use('/', indexRouter);
+app.use('/', trackerRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

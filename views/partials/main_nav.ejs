@@ -1,7 +1,7 @@
 <!--navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Personal Portfolio</a>
+    <a class="navbar-brand" href="#">Workout Tracker</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,7 +9,7 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-        <% if ( title == "Home") { %>
+        <% if ( title == "Workout Tracker Home") { %>
           <a class="nav-link active" aria-current="page" href="/home"> 
         <% } else { %>
           <a class="nav-link" aria-current="page" href="/home">
@@ -18,32 +18,41 @@
         </li>
 
         <li class="nav-item">
-        <% if ( title == "About") { %>
+        <% if (title == "About This Tracker") { %>
           <a class="nav-link active" href="/about"> 
         <% } else { %>
-          <a class="nav-link" aria-current="page" href="/about">
+          <a class="nav-link" href="/about">
         <% } %>
-          <i class="fa-solid fa-sharp fa-circle-info" ></i> About</a>
+          <i class="fa-solid fa-circle-info"></i> About</a>
         </li>
 
         <li class="nav-item">
-        <% if ( title == "Projects") { %>
-          <a class="nav-link active" aria-current="page" href="/Projects"> 
+        <% if ( title == "My Workouts") { %>
+          <a class="nav-link active" href="/workouts"> 
         <% } else { %>
-          <a class="nav-link" aria-current="page" href="/Projects">
+          <a class="nav-link" aria-current="page" href="/workouts">
         <% } %>
-          <i class="fa-solid fa-gears"></i> Projects</a>
+          <i class="fa-solid fa-dumbbell" ></i> Workouts</a>
+        </li>
+
+        <li class="nav-item">
+        <% if ( title == "Add a New Workout") { %>
+          <a class="nav-link active" aria-current="page" href="/add-workout"> 
+        <% } else { %>
+          <a class="nav-link" aria-current="page" href="/add-workout">
+        <% } %>
+          <i class="fa-solid fa-plus-circle"></i> Add Workout</a>
         </li>
 
         <li class="nav-item">
         <% if ( title == "Contact Us") { %>
-          <a class="nav-link active" aria-current="page" href="/Contact"> 
+          <a class="nav-link active" aria-current="page" href="/contact"> 
         <% } else { %>
-          <a class="nav-link" aria-current="page" href="/Contact">
+          <a class="nav-link" aria-current="page" href="/contact">
         <% } %>
           <i class="fa-solid fa-address-book"></i> Contact</a>
         </li>
-
+      </ul>
     </div>
   </div>
 </nav>

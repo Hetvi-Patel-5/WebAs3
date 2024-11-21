@@ -5,7 +5,7 @@
  */
 
 var app = require('./app');
-var debug = require('debug')('webproject:server');
+var debug = require('debug')('workouttracker:server');
 var http = require('http');
 
 /**

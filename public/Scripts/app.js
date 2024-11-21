@@ -2,7 +2,7 @@
 (function(){
     function Start()
     {
-        console.log("App started");
+        console.log("Workout Tracker app started");
     }
     window.addEventListener("load", Start);
 })();

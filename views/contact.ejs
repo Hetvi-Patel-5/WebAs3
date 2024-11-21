@@ -2,13 +2,13 @@
 <%- include partials/header.ejs %>
 <%- include partials/main_nav.ejs %>
 
-<!-- contact me form -->
+<!-- Contact Support Section -->
     <section id="contact">
         <div class="contact container">
           <div class="contact-header">
-            <h1 class="sectionTitle">Contact <span> Me</span></h1>
+            <h1 class="sectionTitle">Contact <span> Support</span></h1>
             <div class="icon">
-              <img src="contact.png" alt="Contact Icon" />
+              <img src="contact-support.png" alt="Contact Support Icon" />
             </div>
           </div>
           <div class="contactItems">
@@ -16,25 +16,25 @@
               <div class="contactInfo">
                 <form action="mailto:patelhetvij@gmail.com" method="post" enctype="text/plain">
                     <p>
-                        <label for="name">Name:</label><br>
-                        <input type="text" id="name" name="name" placeholder="Your Name" required />
+                        <label for="name">Your Name:</label><br>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required />
                     </p>
                     <p>
-                        <label for="email">Email:</label><br>
-                        <input type="Email" id="email" name="Email" placeholder="Your Email Address" required />
+                        <label for="email">Email Address:</label><br>
+                        <input type="email" id="email" name="email" placeholder="Enter Your Email" required />
                     </p>
                     <p>
-                        <label for="subject">Subject:</label><br>
-                        <input type="text" id="subject" name="Subject" placeholder="Subject" required />
+                        <label for="subject">Inquiry Type:</label><br>
+                        <input type="text" id="subject" name="subject" placeholder="General, Bug Report, etc." required />
                     </p>
                     <p>
-                        <label for="message" >Message:</label><br>
-                        <textarea id="message" name="message" cols="40" rows="8" placeholder="Your Message" required></textarea>
+                        <label for="message"> Message:</label><br>
+                        <textarea id="message" name="message" cols="40" rows="8" placeholder="Describe your issue or feedback" required></textarea>
                     </p>
         
                   
                   <div class="buttons">
-                    <button class="btn" type="submit">Submit</button>
+                    <button class="btn" type="submit">Send</button>
                     <button class="btn" type="reset">Reset</button>
                   </div>
                 </form>

@@ -1,0 +1,48 @@
+
+<%- include partials/header.ejs %>
+<%- include partials/main_nav.ejs %>
+
+<!-- contact me form -->
+    <section id="contact">
+        <div class="contact container">
+          <div class="contact-header">
+            <h1 class="sectionTitle">Contact <span> Me</span></h1>
+            <div class="icon">
+              <img src="contact.png" alt="Contact Icon" />
+            </div>
+          </div>
+          <div class="contactItems">
+            <div class="contactItem">
+              <div class="contactInfo">
+                <form action="mailto:patelhetvij@gmail.com" method="post" enctype="text/plain">
+                    <p>
+                        <label for="name">Name:</label><br>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required />
+                    </p>
+                    <p>
+                        <label for="email">Email:</label><br>
+                        <input type="Email" id="email" name="Email" placeholder="Your Email Address" required />
+                    </p>
+                    <p>
+                        <label for="subject">Subject:</label><br>
+                        <input type="text" id="subject" name="Subject" placeholder="Subject" required />
+                    </p>
+                    <p>
+                        <label for="message" >Message:</label><br>
+                        <textarea id="message" name="message" cols="40" rows="8" placeholder="Your Message" required></textarea>
+                    </p>
+        
+                  
+                  <div class="buttons">
+                    <button class="btn" type="submit">Submit</button>
+                    <button class="btn" type="reset">Reset</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<%- include partials/bottom_nav.ejs %>
+<%- include partials/footer.ejs %>

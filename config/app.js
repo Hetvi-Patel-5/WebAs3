@@ -5,8 +5,22 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
-let trackerRouter = require('./routes/index'); // Home page (Workout Dashboard)
-let usersRouter = require('./routes/users');
+//config mongodb
+let mongoose = require('mongoose');
+let DB = require('./db');
+
+//point mongoose to DB URI
+mongoose.connect(DB.URI);
+let mongoDB = mongoose.connection ;
+mongoDB.on('error', console.error.bind(console, 'connection error:'));
+mongoDB.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+
+
+let trackerRouter = require('../routes/index'); // Home page (Workout Dashboard)
+let usersRouter = require('../routes/users');
+let workoutsRouter = require('../routes/tracker');
 
 let app = express();
 
@@ -23,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 
 app.use('/', trackerRouter);
 app.use('/users', usersRouter);
+app.use('/tracker', workoutsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

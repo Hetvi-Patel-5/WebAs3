@@ -3,20 +3,29 @@ let router = express.Router();
 let mongoose = require('mongoose');
 
 // Connect with tracker model
-require('../models/tracker');
-let Tracker = mongoose.model('Tracker');
+let Tracker = require('../models/tracker');
 
 // Read Operation
 // Get route for the tracker list
-router.get('/', (req, res, next) => {
+
+/* router.get('/add-workout', (req, res, next) => {
+    res.render('add-workout', {
+        title: 'Add Workout',
+    });
+}); */
+
+router.get('/add-workout', (req, res) => {
     Tracker.find((err, trackerList) => {
         if (err) {
-            return console.error(err);
-        } else {
-            console.log(trackerList);
-            res.json(trackerList); // send the tracker list as JSON
+            console.log(err);
+            return res.redirect('/add-workout');  // Optionally handle error
         }
+        res.render('add-workout', {
+            title: 'Add Workout',
+            TrackerList: trackerList
+        });
     });
 });
+
 
 module.exports = router;

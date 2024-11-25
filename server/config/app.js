@@ -5,24 +5,25 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
-//config mongodb
+let trackerRouter = require('../routes/index'); // Home page (Workout Dashboard)
+let usersRouter = require('../routes/users');
+let workoutsRouter = require('../routes/tracker');
+
+let app = express();
 let mongoose = require('mongoose');
 let DB = require('./db');
 
 //point mongoose to DB URI
 mongoose.connect(DB.URI);
 let mongoDB = mongoose.connection ;
-mongoDB.on('error', console.error.bind(console, 'connection error:'));
+mongoDB.on('error', console.error.bind(console,'Connection Error'))
 mongoDB.once('open', () => {
-  console.log('Connected to MongoDB');
-});
+  console.log('MongoDB Connected')
+})
 
-
-let trackerRouter = require('../routes/index'); // Home page (Workout Dashboard)
-let usersRouter = require('../routes/users');
-let workoutsRouter = require('../routes/tracker');
-
-let app = express();
+mongoose.connect(DB.URI,{useNewURIParser:true,
+  useUnifiedTopology:true
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
@@ -32,8 +33,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static(path.join(__dirname, '../../public')));
+app.use(express.static(path.join(__dirname, '../../node_modules')));
 app.use(express.static('public'));
 
 app.use('/', trackerRouter);

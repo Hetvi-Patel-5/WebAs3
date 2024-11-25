@@ -34,10 +34,10 @@
                         <td class="text-center col-2"><%= workoutsList[count].Notes %></td>
                         <td class="text-center col-2">
                             <!-- Edit Button -->
-                            <a href="/track/edit/<%= workout._id %>" class="btn btn-primary btn-sm">
+                            <a href="/track/edit/<%= workoutsList[count]._id %>" 
+                               class="btn btn-primary btn-sm">
                                 <i class="fas fa-pencil-alt"></i> Edit
                             </a>
-
                             <!-- Delete Button -->
                             <a href="/track/delete/<%= workoutsList[count]._id %>" 
                                class="btn btn-danger btn-sm">

@@ -37,9 +37,9 @@ app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 app.use(express.static('public'));
 
-app.use('/', trackerRouter);
-app.use('/users', usersRouter);
-app.use('/tracker', workoutsRouter);
+app.use('/', trackerRouter); // Home and other general routes
+app.use('/track', workoutsRouter); // Routes for tracking workouts
+app.use('/users', usersRouter); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

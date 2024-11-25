@@ -30,25 +30,6 @@ router.get('/workouts', function(req, res, next) {
   });
 });
 
-// Route for Add Workout Page (GET request)
-router.get('/add', async (req, res, next) => {
-  try {
-      // Fetch existing workouts from the database
-      const workoutsList = await Tracker.find();
-      
-      // Render the add workout page with the list of workouts
-      res.render('add', {
-          title: 'Add Workout - Workout Tracker',
-          workoutsList: workoutsList
-      });
-  } catch (err) {
-      console.error(err);
-      res.render('error', {
-          error: 'Error on Server'
-      });
-  }
-});
-
 /* GET Contact page. */
 router.get('/contact', function(req, res, next) {
   res.render('contact', { 

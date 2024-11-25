@@ -1,113 +1,97 @@
 var express = require('express');
 var router = express.Router();
-let Tracker = require('../models/tracker.js')  
-let trackerController = require('../controllers/tracker.js')  
+let Tracker = require('../models/tracker.js');
 
-/* Read Operation --> Get route for displaying the workout list */
+/* GET Track Workouts page (List all workouts). */
 router.get('/', async (req, res, next) => {
     try {
-        const TrackerList = await Tracker.find();
-        res.render('tracker/list', {
-            title: 'Workouts',
-            TrackerList: TrackerList
+        const workouts = await Tracker.find(); // Fetch all workouts from the database
+        res.render('track', {
+            title: 'Track Workouts',
+            workoutsList: workouts, 
         });
     } catch (err) {
         console.error(err);
-        res.render('tracker/list', {
-            error: 'Error on Server'
+        res.render('error', {
+            error: 'Failed to load workouts',
         });
     }
 });
 
-/* Create Operation --> Get route for displaying add page */
-router.get('/add', async (req, res, next) => {
-    try {
-        res.render('tracker/add', {
-            title: 'Add Workout'
-        });
-    } catch (err) {
-        console.error(err);
-        res.render('tracker/list', {
-            error: 'Error on Server'
-        });
-    }
+
+/* GET Add New Workout page. */
+router.get('/add', function (req, res, next) {
+    res.render('add', {
+        title: 'Add a New Workout',
+    });
 });
 
-/* Create Operation --> Post route for processing the Add Page */
+/* POST Add New Workout. */
 router.post('/add', async (req, res, next) => {
     try {
-        let newWorkout = Tracker({
-            "date": req.body.Date,
-            "description": req.body.Description,
-            "minutes": req.body.Minutes,
-            "calories": req.body.Calories,
-            "notes": req.body.Notes
+        const { Date, Description, Minutes, Calories, Notes } = req.body;
+        const newWorkout = new Tracker({
+            Date,
+            Description,
+            Minutes,
+            Calories,
+            Notes,
         });
-
-        Tracker.create(newWorkout).then(()=>{
-            res.redirect('/tracker'); /* Once created, route back to workouts */
-        })
+        await newWorkout.save(); // Save the workout to the database
+        res.redirect('/track'); // Redirect back to the Track Workouts page
     } catch (err) {
         console.error(err);
-        res.render('tracker/list', {
-            error: 'Error on Server'
+        res.render('error', {
+            error: 'Failed to add workout',
         });
     }
 });
 
-/* Update Operation --> Get route for displaying edit page */
+/* POST Delete Workout. */
+router.post('/delete/:id', async (req, res, next) => {
+    try {
+        await Tracker.findByIdAndDelete(req.params.id); // Delete the workout by ID
+        res.redirect('/track'); // Redirect back to the Track Workouts page
+    } catch (err) {
+        console.error(err);
+        res.render('error', {
+            error: 'Failed to delete workout',
+        });
+    }
+});
+
+/* GET Edit Workout page. */
 router.get('/edit/:id', async (req, res, next) => {
     try {
-        const id = req.params.id;
-        const workoutToEdit = await Tracker.findById(id);
-        res.render('tracker/edit', {
+        const workout = await Tracker.findById(req.params.id); // Find the workout by ID
+        res.render('edit', {
             title: 'Edit Workout',
-            Tracker: workoutToEdit
+            workout,
         });
     } catch (err) {
         console.error(err);
-        next(err); // Keep passing the error
-        res.render('tracker/list', {
-            error: 'Error on Server'
+        res.render('error', {
+            error: 'Failed to load workout for editing',
         });
     }
 });
 
-/* Update Operation --> Post route for processing the edit Page */
+/* POST Edit Workout. */
 router.post('/edit/:id', async (req, res, next) => {
     try {
-        let id = req.params.id;
-        let updatedWorkout = Tracker({
-            "_id": id,
-            "date": req.body.Date,
-            "description": req.body.Description,
-            "minutes": req.body.Minutes,
-            "calories": req.body.Calories,
-            "notes": req.body.Notes
+        const { Date, Description, Minutes, Calories, Notes } = req.body;
+        await Tracker.findByIdAndUpdate(req.params.id, {
+            Date,
+            Description,
+            Minutes,
+            Calories,
+            Notes,
         });
-
-        Tracker.findByIdAndUpdate(id, updatedWorkout).then(()=>{
-            res.redirect('/tracker');
-        })
+        res.redirect('/track'); // Redirect back to the Track Workouts page
     } catch (err) {
         console.error(err);
-        res.render('tracker/list', {
-            error: 'Error on Server'
-        });
-    }
-});
-
-/* Delete Operation --> Get route to perform delete operation */
-router.get('/delete/:id', async (req, res, next) => {
-    try {
-        let id = req.params.id;
-        Tracker.deleteOne({ _id: id }).then(()=>{
-            res.redirect('/tracker');
-        })
-    } catch (err) {
-        console.error(err);
-        res.render('tracker/list', {
-            error: 'Error on Server'
+        res.render('error', {
+            error: 'Failed to update workout',
         });
     }
 });

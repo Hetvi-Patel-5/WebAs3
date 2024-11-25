@@ -1,12 +1,13 @@
-<%- include ../Partials/header.ejs %>
-<%- include ../Partials/main_nav.ejs %>
+<%- include partials/header.ejs %>
+<%- include partials/main_nav.ejs %>
+
 <main class="container">
     <div class="row">
         <div class="col py-3">
             <h1><%= title %></h1>
             <br>
             <!-- Hero button to add a new workout -->
-            <a href="/add" class="btn btn-primary" role="button">
+            <a href="/track/add" class="btn btn-primary" role="button">
                 <i class="fas fa-plus-circle"></i> Add New Workout
             </a>
             <br><br>
@@ -15,26 +16,28 @@
                 <!-- Table Header -->
                 <thead>
                     <tr class="d-flex">
+                        <th class="text-center col-2">Date</th>
                         <th class="text-center col-2">Description</th>
                         <th class="text-center col-2">Minutes</th>
-                        <th class="text-center col-2">Date</th>
+                        <th class="text-center col-2">Calories Burned</th>
                         <th class="text-center col-2">Notes</th>
-                        <th class="text-center col-1">Actions</th>
+                        <th class="text-center col-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for (let count = 0; count < workoutsList.length; count++) { %>
                     <tr class="d-flex">
+                        <td class="text-center col-2"><%= workoutsList[count].Date %></td>
                         <td class="text-center col-2"><%= workoutsList[count].Description %></td>
                         <td class="text-center col-2"><%= workoutsList[count].Minutes %></td>
-                        <td class="text-center col-2"><%= workoutsList[count].Date %></td>
+                        <td class="text-center col-2"><%= workoutsList[count].Calories %></td>
                         <td class="text-center col-2"><%= workoutsList[count].Notes %></td>
-                        <td class="text-center col-1">
+                        <td class="text-center col-2">
                             <!-- Edit Button -->
-                            <a href="/track/edit/<%= workoutsList[count]._id %>" 
-                               class="btn btn-primary btn-sm">
+                            <a href="/track/edit/<%= workout._id %>" class="btn btn-primary btn-sm">
                                 <i class="fas fa-pencil-alt"></i> Edit
                             </a>
+
                             <!-- Delete Button -->
                             <a href="/track/delete/<%= workoutsList[count]._id %>" 
                                class="btn btn-danger btn-sm">
@@ -48,4 +51,5 @@
         </div>
     </div>
 </main> 
-<%- include ../Partials/footer.ejs %>
+
+<%- include partials/footer.ejs %>

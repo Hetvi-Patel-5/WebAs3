@@ -367,13 +367,19 @@
   }
 
 /* Footer Styling */
-footer {
+.footer {
     background-color: #000000;
     color: white;
     padding: 20px 0;
     text-align: center;
   }
  
+  .footerContainer{
+    width: 1510px;
+    background-color: #000000;
+    color: white;
+    height: 200px;
+  }
   .socialMedia {
     margin-top: 20px;
   }
@@ -400,4 +406,8 @@ footer {
   
   #about, #projects, #contact {
     background-color: grey; /* Darker contrast for other sections */
+  }
+
+  .aboutContainer{
+      width: 1800px;
   }
